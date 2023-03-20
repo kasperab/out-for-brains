@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 3b739da6677ee48a7b979583ecdba482, type: 2}
 --- !u!1 &42912033
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +393,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: small_buildingE
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b32bf75ec3bc9450f8454e01dcae0325, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b32bf75ec3bc9450f8454e01dcae0325, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b32bf75ec3bc9450f8454e01dcae0325, type: 3}
@@ -633,7 +641,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -742,6 +750,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7038cb8568b114642bbbe81c94a31135, type: 3}
       propertyPath: m_Name
       value: construction_barrier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7038cb8568b114642bbbe81c94a31135, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7038cb8568b114642bbbe81c94a31135, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -871,6 +887,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: small_buildingE (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b32bf75ec3bc9450f8454e01dcae0325, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b32bf75ec3bc9450f8454e01dcae0325, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b32bf75ec3bc9450f8454e01dcae0325, type: 3}
@@ -999,6 +1023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: road_intersection
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b6d0ad3bd2aa344ce99fcdc3413304f2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b6d0ad3bd2aa344ce99fcdc3413304f2, type: 3}
@@ -1089,7 +1117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1270,6 +1298,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: construction_barrier
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7038cb8568b114642bbbe81c94a31135, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7038cb8568b114642bbbe81c94a31135, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7038cb8568b114642bbbe81c94a31135, type: 3}
@@ -1433,7 +1469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1474,6 +1510,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
       propertyPath: m_Name
       value: road_straight (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1539,6 +1579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tile_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1220bf3ee0b42471295503ec8b701b70, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1220bf3ee0b42471295503ec8b701b70, type: 3}
@@ -1603,6 +1647,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tile_low (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1220bf3ee0b42471295503ec8b701b70, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1220bf3ee0b42471295503ec8b701b70, type: 3}
@@ -1666,6 +1714,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1220bf3ee0b42471295503ec8b701b70, type: 3}
       propertyPath: m_Name
       value: tile_low (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1220bf3ee0b42471295503ec8b701b70, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1990,6 +2042,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
       propertyPath: m_Name
       value: road_straight (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2526,6 +2582,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: large_buildingD
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fc5c17d7f45814356947a72e755929a0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fc5c17d7f45814356947a72e755929a0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fc5c17d7f45814356947a72e755929a0, type: 3}
@@ -2653,6 +2717,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
       propertyPath: m_Name
       value: road_straight
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c517b3d569bb4acdbb1833d1a658179, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
