@@ -5,6 +5,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
+	public Texture2D cursorPointer;
+	public Texture2D cursorHand;
+
 	private NavMeshAgent agent;
 	private Animator animator;
 	private Clickable clicked = null;
@@ -29,6 +32,7 @@ public class Player : MonoBehaviour
 			{
 				if (hit.collider.GetComponent<Clickable>())
 				{
+					Cursor.SetCursor(cursorHand, Vector2.zero, CursorMode.Auto);
 					if (Input.GetMouseButtonDown(0))
 					{
 						agent.destination = hit.point;
@@ -37,12 +41,17 @@ public class Player : MonoBehaviour
 				}
 				else
 				{
+					Cursor.SetCursor(cursorPointer, Vector2.zero, CursorMode.Auto);
 					if (Input.GetMouseButtonDown(0))
 					{
 						agent.destination = hit.point;
 						clicked = null;
 					}
 				}
+			}
+			else
+			{
+				Cursor.SetCursor(cursorPointer, Vector2.zero, CursorMode.Auto);
 			}
 		}
 		animator.SetBool("moving", agent.hasPath);
