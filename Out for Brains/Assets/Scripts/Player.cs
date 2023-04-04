@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
 	private NavMeshAgent agent;
 	private Animator animator;
-	private Clickable clicked = null;
+	private Interaction interaction = null;
 
 	private void Start()
 	{
@@ -20,40 +20,58 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		if (clicked && !agent.hasPath)
+		if (Interaction.Interacting)
 		{
-			clicked.Click();
-			clicked = null;
+			return;
+		}
+		if (interaction && !agent.hasPath)
+		{
+			interaction.Interact();
+			interaction = null;
+			animator.SetBool("moving", false);
+			SetCursor();
 		}
 		else
 		{
 			Ray ray = CameraHandler.currentCamera.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
 			{
-				if (hit.collider.GetComponent<Clickable>())
+				if (hit.collider.GetComponent<Interaction>())
 				{
-					Cursor.SetCursor(cursorHand, Vector2.zero, CursorMode.Auto);
+					SetCursor(true);
 					if (Input.GetMouseButtonDown(0))
 					{
 						agent.destination = hit.point;
-						clicked = hit.collider.GetComponent<Clickable>();
+						interaction = hit.collider.GetComponent<Interaction>();
 					}
 				}
 				else
 				{
-					Cursor.SetCursor(cursorPointer, Vector2.zero, CursorMode.Auto);
+					SetCursor();
 					if (Input.GetMouseButtonDown(0))
 					{
 						agent.destination = hit.point;
-						clicked = null;
+						interaction = null;
 					}
 				}
 			}
 			else
 			{
-				Cursor.SetCursor(cursorPointer, Vector2.zero, CursorMode.Auto);
+				SetCursor();
 			}
+			animator.SetBool("moving", agent.hasPath);
 		}
-		animator.SetBool("moving", agent.hasPath);
+	}
+
+	private void SetCursor(bool hand = false)
+	{
+		if (hand)
+		{
+			Cursor.SetCursor(cursorHand, Vector2.zero, CursorMode.Auto);
+		}
+		else
+		{
+			Cursor.SetCursor(cursorPointer, Vector2.zero, CursorMode.Auto);
+		}
 	}
 }
