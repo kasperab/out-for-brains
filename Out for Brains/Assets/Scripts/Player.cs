@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
@@ -8,17 +9,27 @@ public class Player : MonoBehaviour
 	public Texture2D cursorPointer;
 	public Texture2D cursorHand;
 	public Item[] items;
+	public Image inventoryImage;
 
 	private NavMeshAgent agent;
 	private Animator animator;
 	private Interaction interaction = null;
 	private static Item[] inventory;
+	private static Image[] inventoryImages;
 
 	private void Start()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
 		inventory = items;
+		inventoryImages = new Image[items.Length];
+		inventoryImages[0] = inventoryImage;
+		GameObject container = inventoryImage.transform.parent.gameObject;
+		Transform inventoryTransform = container.transform.parent;
+		for (int index = 1; index < inventoryImages.Length; index++)
+		{
+			inventoryImages[index] = Instantiate(container, inventoryTransform).transform.GetChild(0).GetComponent<Image>();
+		}
 	}
 
 	private void Update()
@@ -85,6 +96,8 @@ public class Player : MonoBehaviour
 			if (!inventory[index])
 			{
 				inventory[index] = item;
+				inventoryImages[index].sprite = item.image;
+				inventoryImages[index].enabled = true;
 				return;
 			}
 		}
@@ -98,6 +111,7 @@ public class Player : MonoBehaviour
 			if (inventory[index] == item)
 			{
 				inventory[index] = null;
+				inventoryImages[index].enabled = false;
 				break;
 			}
 		}

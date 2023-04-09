@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50acb2e7aa47f4736a8f3251fad3ae8a, type: 3}
   m_Name: Brain
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
   name: Brain
-  description: Delicous!
+  description: Delicious!
+  image: {fileID: 21300000, guid: 744abce91ce01427ab5b900001cecbc5, type: 3}
   combineWith: {fileID: 0}
   combineResult: {fileID: 0}
