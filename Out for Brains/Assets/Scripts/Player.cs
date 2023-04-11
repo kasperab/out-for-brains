@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	private NavMeshAgent agent;
 	private Animator animator;
 	private Interaction interaction = null;
+	private ItemPickup itemPickup = null;
 	private static Item[] inventory;
 	private static Image[] inventoryImages;
 
@@ -45,6 +46,12 @@ public class Player : MonoBehaviour
 			animator.SetBool("moving", false);
 			SetCursor();
 		}
+		else if (itemPickup && !agent.hasPath)
+		{
+			AddItem(itemPickup.PickUp());
+			itemPickup = null;
+			animator.SetBool("moving", false);
+		}
 		else
 		{
 			Ray ray = CameraHandler.currentCamera.ScreenPointToRay(Input.mousePosition);
@@ -57,6 +64,17 @@ public class Player : MonoBehaviour
 					{
 						agent.destination = hit.point;
 						interaction = hit.collider.GetComponent<Interaction>();
+						itemPickup = null;
+					}
+				}
+				else if (hit.collider.GetComponent<ItemPickup>())
+				{
+					SetCursor(true);
+					if (Input.GetMouseButtonDown(0))
+					{
+						agent.destination = hit.point;
+						itemPickup = hit.collider.GetComponent<ItemPickup>();
+						interaction = null;
 					}
 				}
 				else
@@ -66,6 +84,7 @@ public class Player : MonoBehaviour
 					{
 						agent.destination = hit.point;
 						interaction = null;
+						itemPickup = null;
 					}
 				}
 			}
