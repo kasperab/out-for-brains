@@ -8,28 +8,27 @@ public class Player : MonoBehaviour
 {
 	public Texture2D cursorPointer;
 	public Texture2D cursorHand;
-	public Item[] items;
-	public Image inventoryImage;
+	public int inventorySize;
+	public InventorySlot inventorySlot;
 
 	private NavMeshAgent agent;
 	private Animator animator;
 	private Interaction interaction = null;
 	private ItemPickup itemPickup = null;
 	private static Item[] inventory;
-	private static Image[] inventoryImages;
+	private static InventorySlot[] inventorySlots;
 
 	private void Start()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
-		inventory = items;
-		inventoryImages = new Image[items.Length];
-		inventoryImages[0] = inventoryImage;
-		GameObject container = inventoryImage.transform.parent.gameObject;
-		Transform inventoryTransform = container.transform.parent;
-		for (int index = 1; index < inventoryImages.Length; index++)
+		inventory = new Item[inventorySize];
+		inventorySlots = new InventorySlot[inventorySize];
+		inventorySlots[0] = inventorySlot;
+		Transform inventoryTransform = inventorySlot.transform.parent;
+		for (int index = 1; index < inventorySlots.Length; index++)
 		{
-			inventoryImages[index] = Instantiate(container, inventoryTransform).transform.GetChild(0).GetComponent<Image>();
+			inventorySlots[index] = Instantiate(inventorySlot, inventoryTransform);
 		}
 	}
 
@@ -115,8 +114,7 @@ public class Player : MonoBehaviour
 			if (!inventory[index])
 			{
 				inventory[index] = item;
-				inventoryImages[index].sprite = item.image;
-				inventoryImages[index].enabled = true;
+				inventorySlots[index].SetItem(item);
 				return;
 			}
 		}
@@ -130,7 +128,7 @@ public class Player : MonoBehaviour
 			if (inventory[index] == item)
 			{
 				inventory[index] = null;
-				inventoryImages[index].enabled = false;
+				inventorySlots[index].RemoveItem();
 				break;
 			}
 		}
