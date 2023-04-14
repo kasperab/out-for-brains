@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
@@ -15,14 +16,12 @@ public class Player : MonoBehaviour
 	private Animator animator;
 	private Interaction interaction = null;
 	private ItemPickup itemPickup = null;
-	private static Item[] inventory;
 	private static InventorySlot[] inventorySlots;
 
 	private void Start()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
-		inventory = new Item[inventorySize];
 		inventorySlots = new InventorySlot[inventorySize];
 		inventorySlots[0] = inventorySlot;
 		Transform inventoryTransform = inventorySlot.transform.parent;
@@ -54,7 +53,7 @@ public class Player : MonoBehaviour
 		else
 		{
 			Ray ray = CameraHandler.currentCamera.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+			if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity) && !EventSystem.current.IsPointerOverGameObject())
 			{
 				if (hit.collider.GetComponent<Interaction>())
 				{
@@ -109,11 +108,10 @@ public class Player : MonoBehaviour
 
 	public static void AddItem(Item item)
 	{
-		for (int index = 0; index < inventory.Length; index++)
+		for (int index = 0; index < inventorySlots.Length; index++)
 		{
-			if (!inventory[index])
+			if (!inventorySlots[index].HasItem())
 			{
-				inventory[index] = item;
 				inventorySlots[index].SetItem(item);
 				return;
 			}
@@ -123,11 +121,10 @@ public class Player : MonoBehaviour
 
 	public static void RemoveItem(Item item)
 	{
-		for (int index = 0; index < inventory.Length; index++)
+		for (int index = 0; index < inventorySlots.Length; index++)
 		{
-			if (inventory[index] == item)
+			if (inventorySlots[index].HasItem(item))
 			{
-				inventory[index] = null;
 				inventorySlots[index].RemoveItem();
 				break;
 			}
@@ -136,9 +133,9 @@ public class Player : MonoBehaviour
 
 	public static bool HasItem(Item item)
 	{
-		for (int index = 0; index < inventory.Length; index++)
+		for (int index = 0; index < inventorySlots.Length; index++)
 		{
-			if (inventory[index] == item)
+			if (inventorySlots[index].HasItem(item))
 			{
 				return true;
 			}
