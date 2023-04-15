@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 	private Animator animator;
 	private Interaction interaction = null;
 	private ItemPickup itemPickup = null;
+	private Item draggedItem = null;
+	private bool justDropped = false;
 	private static InventorySlot[] inventorySlots;
 
 	private void Start()
@@ -39,8 +41,9 @@ public class Player : MonoBehaviour
 		}
 		if (interaction && !agent.hasPath)
 		{
-			interaction.Interact();
+			interaction.Interact(draggedItem);
 			interaction = null;
+			draggedItem = null;
 			animator.SetBool("moving", false);
 			SetCursor();
 		}
@@ -63,6 +66,13 @@ public class Player : MonoBehaviour
 						agent.destination = hit.point;
 						interaction = hit.collider.GetComponent<Interaction>();
 						itemPickup = null;
+						draggedItem = null;
+					}
+					else if (justDropped)
+					{
+						agent.destination = hit.point;
+						interaction = hit.collider.GetComponent<Interaction>();
+						itemPickup = null;
 					}
 				}
 				else if (hit.collider.GetComponent<ItemPickup>())
@@ -73,6 +83,7 @@ public class Player : MonoBehaviour
 						agent.destination = hit.point;
 						itemPickup = hit.collider.GetComponent<ItemPickup>();
 						interaction = null;
+						draggedItem = null;
 					}
 				}
 				else
@@ -83,6 +94,7 @@ public class Player : MonoBehaviour
 						agent.destination = hit.point;
 						interaction = null;
 						itemPickup = null;
+						draggedItem = null;
 					}
 				}
 			}
@@ -92,6 +104,7 @@ public class Player : MonoBehaviour
 			}
 			animator.SetBool("moving", agent.hasPath);
 		}
+		justDropped = false;
 	}
 
 	private void SetCursor(bool hand = false)
@@ -141,5 +154,11 @@ public class Player : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	public void DropItem(Item item)
+	{
+		draggedItem = item;
+		justDropped = true;
 	}
 }

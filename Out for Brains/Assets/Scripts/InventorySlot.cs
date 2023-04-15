@@ -6,9 +6,11 @@ public class InventorySlot : MonoBehaviour
 	public Image itemImage;
 	public Image infoImage;
 	public Text infoText;
+	public Player player;
 
 	private Item item = null;
 	private static Item draggedItem = null;
+	private static bool isDragging = false;
 
 	public void SetItem(Item newItem)
 	{
@@ -38,7 +40,7 @@ public class InventorySlot : MonoBehaviour
 
 	public void PointerEnter()
 	{
-		if (itemImage.enabled && !draggedItem)
+		if (item && !isDragging)
 		{
 			infoImage.enabled = true;
 			infoText.enabled = true;
@@ -53,17 +55,23 @@ public class InventorySlot : MonoBehaviour
 
 	public void BeginDrag()
 	{
-		if (itemImage.enabled)
+		if (item)
 		{
 			draggedItem = item;
 			itemImage.GetComponent<Canvas>().overrideSorting = true;
 			PointerExit();
+			isDragging = true;
+		}
+		else
+		{
+			draggedItem = null;
+			isDragging = false;
 		}
 	}
 
 	public void Drag()
 	{
-		if (itemImage.enabled)
+		if (item)
 		{
 			itemImage.transform.position = Input.mousePosition;
 		}
@@ -73,11 +81,13 @@ public class InventorySlot : MonoBehaviour
 	{
 		itemImage.transform.localPosition = Vector3.zero;
 		itemImage.GetComponent<Canvas>().overrideSorting = false;
+		isDragging = false;
+		player.DropItem(draggedItem);
 	}
 
 	public void Drop()
 	{
-		if (!itemImage.enabled || !draggedItem)
+		if (!item || !draggedItem)
 		{
 			draggedItem = null;
 			return;
