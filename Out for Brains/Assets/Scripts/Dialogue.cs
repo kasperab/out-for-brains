@@ -26,7 +26,7 @@ public class Dialogue : MonoBehaviour
 		dialogue.background.enabled = true;
 		dialogue.box.enabled = true;
 		dialogue.text.enabled = true;
-		dialogue.text.text = text;
+		dialogue.text.text = text.Replace("<br>", "\n");
 		if (!string.IsNullOrEmpty(name))
 		{
 			dialogue.nameBox.enabled = true;
